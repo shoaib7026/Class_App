@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text('Shoaib',style: TextStyle(color: Colors.black),),
+              accountName: Text('Shoaib',style: TextStyle(color: Colors.white),),
               accountEmail: Text('shoaib@gmail.com',style: TextStyle(color: Colors.black),),
 
               currentAccountPicture: CircleAvatar(child: Icon(Icons.person,color: Colors.black,),backgroundColor: Colors.green,),
