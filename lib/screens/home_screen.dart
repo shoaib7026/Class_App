@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ws_cube/screens/login_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -8,7 +9,7 @@ class HomeScreen extends StatelessWidget {
 
 
         backgroundColor: Colors.yellowAccent,
-        title: Text('Whatsapp'),
+        title: Text('Practice App'),
         titleTextStyle: TextStyle(color: Colors.black, fontSize: 25),
         centerTitle: true,
 
@@ -25,16 +26,16 @@ class HomeScreen extends StatelessWidget {
       ),
 
       drawer: Drawer(
-
         child: Column(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text('Shoaib',style: TextStyle(color: Colors.white),),
-              accountEmail: Text('shoaib@gmail.com',style: TextStyle(color: Colors.black),),
 
-              currentAccountPicture: CircleAvatar(child: Icon(Icons.person,color: Colors.black,),backgroundColor: Colors.green,),
+              accountName: Text('Shoaib',style: TextStyle(color: Colors.white),),
+              accountEmail: Text('shoaib@gmail.com',style: TextStyle(color: Colors.white),),
+
+              currentAccountPicture: CircleAvatar(child: Icon(Icons.person,color: Colors.black,),backgroundColor: Colors.yellowAccent,),
                decoration: BoxDecoration(
-                 color: Colors.yellowAccent
+                 color: Colors.black
                ),
             ),
 
@@ -52,6 +53,20 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context);
                 print('Setting Clicked');
+              },
+
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.list),
+              title: Text('login page'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context)=> LoginScreen(),
+                  )
+                );
               },
             ),
           ],
