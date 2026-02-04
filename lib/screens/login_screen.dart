@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ws_cube/screens/Register_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen ({super.key});
@@ -124,9 +125,27 @@ class LoginScreen extends StatelessWidget {
                                 image: DecorationImage(image: AssetImage('assets/icon_google.png'))
                             ),
 
-                          )
+                          ),
+
                         ],
+
+
                       ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('dont have an account?',style: GoogleFonts.oswald(color: Colors.black),),
+                      TextButton(onPressed: (){
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context)=> RegisterScreen()),
+
+
+                        );
+                      }, child: Text('click here',style: GoogleFonts.oswald(color: Colors.green),))
+                    ],
+                  ),
                       SizedBox(height: 30,),
                       Container(
                           alignment: Alignment.center,
