@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "996284724714",
+    "project_id": "class-practice-app",
+    "storage_bucket": "class-practice-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996284724714:android:e6d909b23d602548f96e93",
+        "android_client_info": {
+          "package_name": "com.example.ws_cube"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlZGDU5Dsnfm98pAvQ6Mf8vF6YRO5vPw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
