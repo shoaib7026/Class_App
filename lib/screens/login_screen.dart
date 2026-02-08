@@ -1,10 +1,34 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ws_cube/screens/Register_screen.dart';
+import 'package:ws_cube/screens/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen ({super.key});
 
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
+
+  Future< void> login(BuildContext context )async{
+
+    try{
+
+
+
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailcontroller.text, password: passwordcontroller.text);
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Welcome Back')));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+
+    }
+
+
+    catch(e){
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +82,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: 60,),
                       Text('Email',style: GoogleFonts.oswald(color: Colors.black,fontSize: 19,letterSpacing: 1),),
                       TextField(
+                        controller: emailcontroller,
                         decoration: InputDecoration(
                           prefixIcon: Icon(Icons.mail),
                           hintText: 'Enter Your Email',
@@ -68,6 +93,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: 40,),
                       Text('Password',style: GoogleFonts.oswald(color: Colors.black,fontSize: 19,letterSpacing: 1),),
                       TextField(
+                        controller: passwordcontroller,
                         decoration: InputDecoration(
                           prefixIcon: Icon(Icons.lock_open),
                           hintText: 'Enter Your Password',
@@ -82,21 +108,29 @@ class LoginScreen extends StatelessWidget {
                         ],
                       ),
 
-                      Container(
-                        width: wd *0.3,
-                        height: ht *0.08,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: Colors.green,
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(40),
+                      GestureDetector(
 
-                              bottomLeft: Radius.circular(40)
+                        onTap: (){
+login(context);
+
+                        },
+
+                        child: Container(
+                          width: wd *0.3,
+                          height: ht *0.08,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(40),
+
+                                bottomLeft: Radius.circular(40)
+                            ),
                           ),
+
+
+                          child: Text('Login',style: GoogleFonts.oswald(color: Colors.white,fontSize: 21,fontWeight: FontWeight.bold),),
                         ),
-
-
-                        child: Text('Login',style: GoogleFonts.oswald(color: Colors.white,fontSize: 21,fontWeight: FontWeight.bold),),
                       ),
                       SizedBox(height: 4,),
                       Divider(
