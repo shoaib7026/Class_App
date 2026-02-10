@@ -4,6 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:ws_cube/screens/login_screen.dart';
 
 class HomeScreen extends StatelessWidget {
+
+  Future<Map<String, dynamic>> fetchuser() async{
+
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+
+    DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('users').doc(uid).get();
+     return documentSnapshot.data()as Map<String,dynamic>;
+
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -33,16 +45,40 @@ class HomeScreen extends StatelessWidget {
       drawer: Drawer(
         child: Column(
           children: [
-            UserAccountsDrawerHeader(
+          FutureBuilder(
+            future: fetchuser(),
+            builder: (context,snashot){
+              if(snashot.connectionState == ConnectionState.waiting){
+                return CircularProgressIndicator();
+              }
+              else if(snashot.hasError){
+                return Text('Something is wrong');
+              }
+              else if(snashot.hasData){
+                var user = snashot.data as Map<String,dynamic>;
+                return   UserAccountsDrawerHeader(
 
-              accountName: Text('Shoaib',style: TextStyle(color: Colors.white),),
-              accountEmail: Text('shoaib@gmail.com',style: TextStyle(color: Colors.white),),
+                  accountName: Text(user['name'],style: TextStyle(color: Colors.white),),
+                  accountEmail: Text(user['email'],style: TextStyle(color: Colors.white),),
 
-              currentAccountPicture: CircleAvatar(child: Icon(Icons.person,color: Colors.black,),backgroundColor: Colors.yellowAccent,),
-               decoration: BoxDecoration(
-                 color: Colors.black
-               ),
-            ),
+                  currentAccountPicture: CircleAvatar(child: Icon(Icons.person,color: Colors.black,),backgroundColor: Colors.yellowAccent,),
+                  decoration: BoxDecoration(
+                      color: Colors.black
+                  ),
+                );
+              }
+              return   UserAccountsDrawerHeader(
+
+                accountName: Text('Guest',style: TextStyle(color: Colors.white),),
+                accountEmail: Text('guest@gmail.com',style: TextStyle(color: Colors.white),),
+
+                currentAccountPicture: CircleAvatar(child: Icon(Icons.person,color: Colors.black,),backgroundColor: Colors.yellowAccent,),
+                decoration: BoxDecoration(
+                    color: Colors.black
+                ),
+              );
+            }
+          ),
 
             ListTile(
               leading: Icon(Icons.mail),
