@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,10 +9,13 @@ class HomeScreen extends StatelessWidget {
 
   Future<Map<String, dynamic>> fetchuser() async{
 
+
     String uid = FirebaseAuth.instance.currentUser!.uid;
 
-    DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('users').doc(uid).get();
-     return documentSnapshot.data()as Map<String,dynamic>;
+    DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+    log('Yaha Tk Theak he ');
+    log(documentSnapshot.data().toString());
+     return documentSnapshot.data() as Map<String,dynamic>;
 
 
   }
@@ -52,6 +57,7 @@ class HomeScreen extends StatelessWidget {
                 return CircularProgressIndicator();
               }
               else if(snashot.hasError){
+                // log(snashot.error.toString());
                 return Text('Something is wrong');
               }
               else if(snashot.hasData){
