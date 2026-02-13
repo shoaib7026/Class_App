@@ -13,11 +13,7 @@ class LoginScreen extends StatelessWidget {
   Future< void> login(BuildContext context )async{
 
     try{
-
-
-
       UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailcontroller.text, password: passwordcontroller.text);
-
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Welcome Back')));
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
 
@@ -25,10 +21,11 @@ class LoginScreen extends StatelessWidget {
 
 
     catch(e){
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+    var a =  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
     }
 
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +91,7 @@ class LoginScreen extends StatelessWidget {
                       Text('Password',style: GoogleFonts.oswald(color: Colors.black,fontSize: 19,letterSpacing: 1),),
                       TextField(
                         controller: passwordcontroller,
+
                         decoration: InputDecoration(
                           prefixIcon: Icon(Icons.lock_open),
                           hintText: 'Enter Your Password',
@@ -104,7 +102,10 @@ class LoginScreen extends StatelessWidget {
                       Row(
                         children: [
                           Spacer(),
-                          Text('Forgot Password',style: GoogleFonts.oswald(color: Colors.black,fontSize: 14,letterSpacing: 2))
+                          ElevatedButton(onPressed: (){
+
+                          }, child: Text('Forgot Password',style: GoogleFonts.oswald(color: Colors.black,fontSize: 14,letterSpacing: 2)))
+
                         ],
                       ),
 
