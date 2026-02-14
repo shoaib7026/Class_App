@@ -55,11 +55,23 @@ class HomeScreen extends StatelessWidget {
               if(snashot.connectionState == ConnectionState.waiting){
                 return CircularProgressIndicator();
               }
-              else if(snashot.hasError){
-                // log(snashot.error.toString());
-                return Text('Something is wrong');
+              if(snashot.data == null || snashot.data!.isEmpty){
+                return UserAccountsDrawerHeader(
+
+                  accountName: Text('Guest',style: TextStyle(color: Colors.white),),
+                  accountEmail: Text('guest@gmail.com',style: TextStyle(color: Colors.white),),
+
+                  currentAccountPicture: CircleAvatar(child: Icon(Icons.person,color: Colors.black,),backgroundColor: Colors.yellowAccent,),
+                  decoration: BoxDecoration(
+                      color: Colors.black
+                  ),
+                );
               }
-              else if(snashot.hasData){
+              if(snashot.hasError){
+                // log(snashot.error.toString());
+                return Text(snashot.error.toString());
+              }
+              if(snashot.hasData){
                 var user = snashot.data as Map<String,dynamic>;
                 return   UserAccountsDrawerHeader(
 
@@ -72,16 +84,8 @@ class HomeScreen extends StatelessWidget {
                   ),
                 );
               }
-              return   UserAccountsDrawerHeader(
 
-                accountName: Text('Guest',style: TextStyle(color: Colors.white),),
-                accountEmail: Text('guest@gmail.com',style: TextStyle(color: Colors.white),),
-
-                currentAccountPicture: CircleAvatar(child: Icon(Icons.person,color: Colors.black,),backgroundColor: Colors.yellowAccent,),
-                decoration: BoxDecoration(
-                    color: Colors.black
-                ),
-              );
+              return Text('hy');
             }
           ),
 
