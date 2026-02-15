@@ -13,8 +13,7 @@ class HomeScreen extends StatelessWidget {
     String uid = FirebaseAuth.instance.currentUser!.uid;
 
     DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
-    log('Yaha Tk Theak he ');
-    log(documentSnapshot.data().toString());
+
      return documentSnapshot.data() as Map<String,dynamic>;
 
 
@@ -114,6 +113,14 @@ class HomeScreen extends StatelessWidget {
                     builder: (context)=> LoginScreen(),
                   )
                 );
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.list),
+              title: Text('Product page'),
+              onTap: () {
+
               },
             ),
           ],

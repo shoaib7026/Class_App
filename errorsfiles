@@ -1,0 +1,4 @@
+======== Exception caught by gestures library ======================================================
+The following assertion was thrown while handling a pointer data packet: Assertion failed: file:///C:/Users/SHOAIB/src/flutter/packages/flutter/lib/src/rendering/mouse_tracker.dart:199:12
+!_debugDuringDeviceUpdate is not true When the exception was thrown, this was the stack:
+dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/errors.dart 274:3 throw_ dart-sdk/lib/_internal/js_dev_runtime/private/ddc_runtime/errors.dart 44:3 assertFailed package:flutter/src/rendering/mouse_tracker.dart 199:13 [_deviceUpdatePhase]
