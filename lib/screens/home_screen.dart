@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ws_cube/crud/add-prdouct.dart';
+import 'package:ws_cube/crud/product-screen.dart';
 import 'package:ws_cube/screens/login_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -124,7 +126,10 @@ class HomeScreen extends StatelessWidget {
               leading: Icon(Icons.list),
               title: Text('Product page'),
               onTap: () {
-
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AddProduct())
+              );
               },
             ),
           ],
